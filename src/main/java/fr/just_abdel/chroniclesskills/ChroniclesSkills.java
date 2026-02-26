@@ -4,6 +4,7 @@ import fr.just_abdel.chroniclescore.api.database.CoreDatabase;
 import fr.just_abdel.chroniclescore.api.scheduler.CoreScheduler;
 import fr.just_abdel.chroniclesskills.command.MasteryAdminCommand;
 import fr.just_abdel.chroniclesskills.command.MasteryCommand;
+import fr.just_abdel.chroniclesskills.config.GUIConfig;
 import fr.just_abdel.chroniclesskills.config.MasteryConfig;
 import fr.just_abdel.chroniclesskills.config.MessagesConfig;
 import fr.just_abdel.chroniclesskills.gui.MasteryMenuGUI;
@@ -29,6 +30,7 @@ public final class ChroniclesSkills extends JavaPlugin {
     @Getter private static ChroniclesSkills instance;
     private MasteryConfig masteryConfig;
     private MessagesConfig messagesConfig;
+    private GUIConfig guiConfig;
     private MasteryRepository masteryRepository;
     private MasteryManager masteryManager;
     private MMOItemsIntegration mmoItemsIntegration;
@@ -49,11 +51,12 @@ public final class ChroniclesSkills extends JavaPlugin {
         saveDefaultConfig();
         masteryConfig = new MasteryConfig(this);
         messagesConfig = new MessagesConfig(this);
+        guiConfig = new GUIConfig(this);
 
 
         createDatabaseTable();
         masteryRepository = new MasteryRepository(CoreDatabase.get());
-        masteryManager = new MasteryManager(masteryRepository, masteryConfig, messagesConfig);
+        masteryManager = new MasteryManager(masteryRepository, masteryConfig, messagesConfig, guiConfig);
         weaponUtils = new WeaponUtils();
         initializeIntegrations();
 
