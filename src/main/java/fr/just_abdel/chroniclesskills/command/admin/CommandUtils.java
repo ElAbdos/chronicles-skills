@@ -18,8 +18,7 @@ public final class CommandUtils {
     public static OfflinePlayer getValidPlayer(CommandSender sender, String playerName, MessagesConfig messages) {
         OfflinePlayer target = Bukkit.getOfflinePlayer(playerName);
         if (!target.hasPlayedBefore() && !target.isOnline()) {
-            String message = messages.getPlayerNotFound().replace("<prefix>", messages.getPrefix());
-            CoreMessenger.get().send(sender, message);
+            CoreMessenger.get().send(sender, messages.getPlayerNotFound());
             return null;
         }
         return target;
@@ -28,8 +27,7 @@ public final class CommandUtils {
     public static WeaponType getValidWeaponType(CommandSender sender, String typeName, MessagesConfig messages) {
         WeaponType type = WeaponType.fromKey(typeName);
         if (type == null) {
-            String message = messages.getInvalidWeaponType().replace("<prefix>", messages.getPrefix());
-            CoreMessenger.get().send(sender, message);
+            CoreMessenger.get().send(sender, messages.getInvalidWeaponType());
             return null;
         }
         return type;

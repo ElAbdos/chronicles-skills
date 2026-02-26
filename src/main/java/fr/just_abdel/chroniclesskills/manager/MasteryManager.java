@@ -142,7 +142,6 @@ public class MasteryManager {
         }
 
         String message = messages.getLevelUp()
-                .replace("<prefix>", messages.getPrefix())
                 .replace("<level>", String.valueOf(newLevel))
                 .replace("<weapon>", type.getDisplayName());
 

@@ -67,7 +67,6 @@ public class SetLevelSubCommand implements CoreSubCommand {
         masteryManager.setLevel(target.getUniqueId(), type, level);
 
         String message = messages.getSetLevelSuccess()
-                .replace("<prefix>", messages.getPrefix())
                 .replace("<player>", playerName)
                 .replace("<weapon>", type.getDisplayName())
                 .replace("<level>", String.valueOf(level));

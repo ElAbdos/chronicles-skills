@@ -61,7 +61,6 @@ public class ResetSubCommand implements CoreSubCommand {
         masteryManager.reset(target.getUniqueId(), type);
 
         String message = messages.getResetSuccess()
-                .replace("<prefix>", messages.getPrefix())
                 .replace("<player>", playerName);
 
         CoreMessenger.get().send(ctx.sender(), message);

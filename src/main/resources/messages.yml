@@ -1,0 +1,27 @@
+# ChroniclesSkills Messages
+# Utilise les couleurs: <primary>, <secondary>, <success>, <error>, <accent>, <gold>, <gray>
+# Placeholders: <level>, <max>, <xp>, <required>, <progress>, <percent>, <weapon>, <player>
+
+# Level up
+level-up: "<gold>Tu as atteint le niveau <level> en <weapon>!"
+
+# XP gain
+xp-gain: "<secondary>+<xp> XP"
+
+# Erreurs
+player-not-found: "<error>Joueur introuvable!"
+invalid-weapon-type: "<error>Type d'arme invalide!"
+
+# Admin commands
+reload-success: "<success>Configuration rechargee!"
+reset-success: "<success>Donnees de maitrise de <player> reinitialisees!"
+set-level-success: "<success>Niveau <weapon> de <player> defini a <level>!"
+add-xp-success: "<success><xp> XP ajoutes a la maitrise <weapon> de <player>!"
+
+# Stats
+stats-header: "<gold>=== Stats Maitrise ==="
+stats-line: "<secondary><weapon>: Niveau <level> (<xp>/<required> XP)"
+
+# Toast (notifications)
+toast:
+  level-up-subtitle: "<weapon> Niveau <level>"

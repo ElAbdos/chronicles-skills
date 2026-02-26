@@ -4,6 +4,7 @@ import fr.just_abdel.chroniclescore.api.database.CoreDatabase;
 import fr.just_abdel.chroniclescore.api.scheduler.CoreScheduler;
 import fr.just_abdel.chroniclesskills.command.MasteryAdminCommand;
 import fr.just_abdel.chroniclesskills.command.MasteryCommand;
+import fr.just_abdel.chroniclesskills.config.ColorConfig;
 import fr.just_abdel.chroniclesskills.config.GUIConfig;
 import fr.just_abdel.chroniclesskills.config.MasteryConfig;
 import fr.just_abdel.chroniclesskills.config.MessagesConfig;
@@ -27,7 +28,8 @@ import java.util.Objects;
 @Getter
 public final class ChroniclesSkills extends JavaPlugin {
 
-    @Getter private static ChroniclesSkills instance;
+    private static ChroniclesSkills instance;
+    private ColorConfig colorConfig;
     private MasteryConfig masteryConfig;
     private MessagesConfig messagesConfig;
     private GUIConfig guiConfig;
@@ -49,9 +51,10 @@ public final class ChroniclesSkills extends JavaPlugin {
         }
 
         saveDefaultConfig();
+        colorConfig = new ColorConfig(this);
         masteryConfig = new MasteryConfig(this);
-        messagesConfig = new MessagesConfig(this);
-        guiConfig = new GUIConfig(this);
+        messagesConfig = new MessagesConfig(this, colorConfig);
+        guiConfig = new GUIConfig(this, colorConfig);
 
 
         createDatabaseTable();

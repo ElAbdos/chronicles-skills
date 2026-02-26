@@ -41,7 +41,6 @@ public class ReloadSubCommand implements CoreSubCommand {
         masteryManager.getConfig().reload();
         masteryManager.getMessages().reload();
 
-        String message = messages.getReloadSuccess().replace("<prefix>", messages.getPrefix());
-        CoreMessenger.get().send(ctx.sender(), message);
+        CoreMessenger.get().send(ctx.sender(), messages.getReloadSuccess());
     }
 }

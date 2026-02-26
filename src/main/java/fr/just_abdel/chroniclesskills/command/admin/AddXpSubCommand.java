@@ -67,7 +67,6 @@ public class AddXpSubCommand implements CoreSubCommand {
         masteryManager.addXp(target.getUniqueId(), type, amount);
 
         String message = messages.getAddXpSuccess()
-                .replace("<prefix>", messages.getPrefix())
                 .replace("<player>", playerName)
                 .replace("<weapon>", type.getDisplayName())
                 .replace("<xp>", String.format("%.0f", amount));

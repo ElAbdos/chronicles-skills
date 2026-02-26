@@ -1,0 +1,107 @@
+# ChroniclesMastery Configuration
+
+colors:
+  primary: "d1a9ff"    # Violet pastel
+  secondary: "92bed8"  # Bleu clair pastel
+  success: "bfe86d"    # Vert pastel
+  error: "E57373"      # Rouge pastel
+  accent: "ffacd5"     # Rose pastel
+  gold: "FFF6A8"       # Jaune pastel
+  gray: "8c8c8c"       # Gris pastel
+
+# Formule XP: base * multiplier^(level-1) * level^exponent
+xp:
+  base: 50.0
+  multiplier: 1.12
+  exponent: 1.5
+
+# Niveaux maximum par monde (supporte les patterns avec *)
+    # Exemple: "Palier*" pour matcher "Palier1", "Palier2", "Palier_nether", etc.
+    max-levels:
+  default: 100
+  worlds:
+    # Exemple avec wildcard
+    "Palier*": 50
+    # Correspondance exacte
+    # "world_nether": 75
+
+default-mob-xp: 10.0
+
+mmoitems:
+  mappings:
+    HEAVY_SWORD: lourde
+    GREAT_AXE: lourde
+    HAMMER: lourde
+    SWORD: moyenne
+    KATANA: moyenne
+    RAPIER: moyenne
+    DAGGER: legere
+    KNIFE: legere
+    THROWING_KNIFE: legere
+
+mythicmobs:
+  enabled: true
+  xp:
+    # Exemples:
+    # "BossZombie": 100.0
+    # "EliteSkeleton": 50.0
+
+
+auto-save-interval: 5 # Intervalle de sauvegarde automatique (en minutes)
+
+# Configuration du GUI
+gui:
+  title: "<gold>Maitrise des Armes"
+  rows: 5
+
+  # Item d'information central
+  info:
+    slot: 22
+    material: "BOOK"
+    custom-model-data: 0
+    name: "<gold>Informations"
+    lore:
+      - "<secondary>Vos points de maitrise"
+      - "<secondary>augmentent en tuant"
+      - "<secondary>des monstres avec"
+      - "<secondary>le type d'arme correspondant."
+
+  # Configuration des types d'armes
+  weapons:
+    lourde:
+      slot: 11
+      material: "DIAMOND_AXE"
+      custom-model-data: 0
+      name: "<gold><weapon>"
+      glowing: true
+    moyenne:
+      slot: 13
+      material: "DIAMOND_SWORD"
+      custom-model-data: 0
+      name: "<gold><weapon>"
+      glowing: true
+    legere:
+      slot: 15
+      material: "DIAMOND_HOE"
+      custom-model-data: 0
+      name: "<gold><weapon>"
+      glowing: true
+    # Lore commun pour tous les types d'armes
+    lore:
+      - "<gray>━━━━━━━━━━━━━━━━━━━━"
+      - "<secondary>Niveau: <level>/<max>"
+      - "<secondary>XP: <xp>/<required>"
+      - ""
+      - "<progress> <gray><percent>%"
+      - "<gray>━━━━━━━━━━━━━━━━━━━━"
+
+  # Barre de progression
+  progress-bar:
+    length: 10
+    filled-char: "█"
+    empty-char: "█"
+    filled-color: "<secondary>"
+    empty-color: "<gray>"
+
+  # Message au clic sur un type d'arme
+  click-message: "<secondary>Clique sur <weapon>"
