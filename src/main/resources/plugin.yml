@@ -1,0 +1,40 @@
+name: chronicles-skills
+version: '1.0'
+main: fr.just_abdel.chroniclesskills.ChroniclesSkills
+api-version: '1.21'
+author: just_abdel
+description: Un plugin de compétences pour le serveur Sao Chronicles.
+folia-supported: true
+
+commands:
+  mastery:
+    description: Ouvre le menu de maîtrise
+    usage: /mastery [stats|gui]
+    permission: chronicles.mastery
+  masteryadmin:
+    description: Commandes admin de maîtrise
+    usage: /masteryadmin <subcommand>
+    permission: chronicles.mastery.admin
+
+permissions:
+  chronicles.mastery:
+    description: Accès aux commandes de maîtrise
+    default: true
+  chronicles.mastery.admin:
+    description: Accès aux commandes admin
+    default: op
+  chronicles.mastery.admin.setlevel:
+    description: Définir le niveau d'un joueur
+    default: op
+  chronicles.mastery.admin.addxp:
+    description: Ajouter de l'XP à un joueur
+    default: op
+  chronicles.mastery.admin.reset:
+    description: Réinitialiser les données d'un joueur
+    default: op
+  chronicles.mastery.admin.info:
+    description: Voir les infos d'un joueur
+    default: op
+  chronicles.mastery.admin.reload:
+    description: Recharger la configuration
+    default: op
