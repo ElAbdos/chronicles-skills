@@ -1,12 +1,16 @@
 # ChroniclesSkills Messages
 # Utilise les couleurs: <primary>, <secondary>, <success>, <error>, <accent>, <gold>, <gray>
-# Placeholders: <level>, <max>, <xp>, <required>, <progress>, <percent>, <weapon>, <player>
+# Placeholders: <level>, <max>, <xp>, <required>, <progress>, <percent>, <weapon>, <player>, <current_xp>, <required_xp>
 
 # Level up
 level-up: "<gold>Tu as atteint le niveau <level> en <weapon>!"
 
 # XP gain
 xp-gain: "<secondary>+<xp> XP"
+
+# XP gain action bar (affiché en temps réel lors des kills)
+# Placeholders: <xp>, <weapon>, <level>, <current_xp>, <required_xp>, <percent>
+xp-gain-actionbar: "<gold>+<xp> XP <gray>| <secondary><weapon> <gray>| <secondary>Niv.<level> <gray>| <gold><current_xp>/<required_xp>"
 
 # Erreurs
 player-not-found: "<error>Joueur introuvable!"

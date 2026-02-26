@@ -63,13 +63,8 @@ public class CombatListener implements Listener {
             return;
         }
 
-        if (mythicMobsIntegration == null || !mythicMobsIntegration.isEnabled()) {
+        if (entity instanceof Player) {
             return;
-        }
-
-        String mythicMobType = mythicMobsIntegration.getMythicMobName(entity);
-        if (mythicMobType == null) {
-                return;
         }
 
         ItemStack weapon = killer.getInventory().getItemInMainHand();
@@ -79,9 +74,22 @@ public class CombatListener implements Listener {
             return;
         }
 
-
         XPManager xpManager = masteryManager.getXpManager();
-        double xp = xpManager.getMythicMobXp(mythicMobType);
+        double xp = 0;
+
+        // Vérifier si c'est un MythicMob
+        if (mythicMobsIntegration != null && mythicMobsIntegration.isEnabled()) {
+            String mythicMobType = mythicMobsIntegration.getMythicMobName(entity);
+            if (mythicMobType != null) {
+                plugin.getLogger().info("[DEBUG] MythicMob détecté: " + mythicMobType);
+                xp = xpManager.getMythicMobXp(mythicMobType);
+            }
+        }
+
+        // Si pas de XP MythicMob, utiliser le XP par défaut pour les mobs vanilla
+        if (xp <= 0) {
+            xp = masteryManager.getConfig().getDefaultMobXp();
+        }
 
         if (xp <= 0) {
             return;
@@ -100,13 +108,14 @@ public class CombatListener implements Listener {
 
         int level = data.getLevel(weaponType);
         double currentXp = data.getXp(weaponType);
-        double progress = xpManager.getProgressPercentage(currentXp, level);
-        String message = messages.getXpGain()
-                .replace("<xp>", String.format("%.1f", xp))
+        double requiredXp = xpManager.getRequiredXp(level);
+
+        String message = messages.getXpGainActionBar()
+                .replace("<xp>", String.format("%.0f", xp))
                 .replace("<weapon>", weaponType.getDisplayName())
                 .replace("<level>", String.valueOf(level))
-                .replace("<progress>", String.format("%.0f", progress * 100))
-                .replace("<progress_bar>", createProgressBar(progress));
+                .replace("<current_xp>", String.format("%.0f", currentXp))
+                .replace("<required_xp>", String.format("%.0f", requiredXp));
 
         Component actionBarMessage = MiniMessage.miniMessage().deserialize(message);
         sendCoalescedActionBar(player, actionBarMessage);
@@ -172,22 +181,5 @@ public class CombatListener implements Listener {
 
             scheduleActionBarTick(player, playerId);
         }, null, ACTION_BAR_TICKS);
-    }
-
-    /**
-     * Crée une barre de progression textuelle pour l'action bar en fonction du pourcentage de progression, en utilisant des couleurs pour différencier la partie remplie et la partie vide.
-     */
-    private String createProgressBar(double progress) {
-        int barLength = 10;
-        int filled = (int) (progress * barLength);
-
-        return "<b>" +
-                "<color:#92bed8>" +
-                "█".repeat(Math.max(0, filled)) +
-                "</color>" +
-                "<color:#4a4a4a>" +
-                "█".repeat(Math.max(0, barLength - filled)) +
-                "</color>" +
-                "</b>";
     }
 }

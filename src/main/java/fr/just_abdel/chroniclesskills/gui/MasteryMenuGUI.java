@@ -10,7 +10,6 @@ import fr.just_abdel.chroniclesskills.manager.XPManager;
 import fr.just_abdel.chroniclesskills.model.MasteryData;
 import fr.just_abdel.chroniclesskills.model.WeaponType;
 import lombok.Getter;
-import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
@@ -140,20 +139,15 @@ public class MasteryMenuGUI implements Listener {
         String filledColor = guiConfig.getProgressBarFilledColor();
         String emptyColor = guiConfig.getProgressBarEmptyColor();
 
-        return filledColor + filledChar.repeat(Math.max(0, filled)) +
-                emptyColor + emptyChar.repeat(Math.max(0, length - filled));
-    }
-
-    /**
-     * Créer une méthode pour obtenir le type d'arme correspondant à un slot d'inventaire, en vérifiant les mappings définis dans la configuration pour chaque type d'arme.
-     */
-    private WeaponType getWeaponTypeForSlot(int slot) {
-        for (WeaponType type : WeaponType.values()) {
-            if (guiConfig.getWeaponSlot(type.name().toLowerCase()) == slot) {
-                return type;
-            }
+        StringBuilder bar = new StringBuilder();
+        for (int i = 0; i < filled; i++) {
+            bar.append(filledColor).append(filledChar).append("<shift:-1>");
         }
-        return null;
+        for (int i = 0; i < length - filled; i++) {
+            bar.append(emptyColor).append(emptyChar).append("<shift:-1>");
+        }
+
+        return bar.toString();
     }
 
     @EventHandler
@@ -166,15 +160,6 @@ public class MasteryMenuGUI implements Listener {
         }
 
         event.setCancelled(true);
-
-        int slot = event.getRawSlot();
-        WeaponType clickedType = getWeaponTypeForSlot(slot);
-
-        if (clickedType != null) {
-            String message = guiConfig.getClickMessage()
-                    .replace("<weapon>", clickedType.getDisplayName());
-            player.sendMessage(MiniMessage.miniMessage().deserialize(message));
-        }
     }
 
     @EventHandler

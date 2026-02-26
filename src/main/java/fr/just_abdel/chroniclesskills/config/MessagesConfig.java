@@ -20,6 +20,11 @@ public class MessagesConfig extends CoreConfig {
         return colorConfig.applyColors(get().getString("xp-gain", "<secondary>+<xp> XP"));
     }
 
+    public String getXpGainActionBar() {
+        return colorConfig.applyColors(get().getString("xp-gain-actionbar",
+                "<gold>+<xp> XP <gray>| <secondary><weapon> <gray>| <secondary>Niv.<level> <gray>| <gold><current_xp>/<required_xp>"));
+    }
+
     public String getPlayerNotFound() {
         return colorConfig.applyColors(get().getString("player-not-found", "<error>Joueur introuvable!"));
     }

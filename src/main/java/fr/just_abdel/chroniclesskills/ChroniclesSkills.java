@@ -129,10 +129,12 @@ public final class ChroniclesSkills extends JavaPlugin {
      */
     private void registerCommands() {
         MasteryCommand masteryCommand = new MasteryCommand(this, masteryManager, masteryMenuGUI);
+        masteryCommand.initSubCommands();
         Objects.requireNonNull(getCommand("mastery")).setExecutor(masteryCommand);
         Objects.requireNonNull(getCommand("mastery")).setTabCompleter(masteryCommand);
 
         MasteryAdminCommand adminCommand = new MasteryAdminCommand(this, masteryManager);
+        adminCommand.initSubCommands();
         Objects.requireNonNull(getCommand("masteryadmin")).setExecutor(adminCommand);
         Objects.requireNonNull(getCommand("masteryadmin")).setTabCompleter(adminCommand);
     }
